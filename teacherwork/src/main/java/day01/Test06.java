@@ -33,23 +33,25 @@ public class Test06 {
 		String line = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		Random random = new Random();
 		String code = "";
-		for(int i = 0;i<4;i++){
+		for(int i=0;i<4;i++) {
 			int index = random.nextInt(line.length());
 			char c = line.charAt(index);
 			code+=c;
 		}
-		System.out.println("验证码："+code);
+		System.out.println("验证码:"+code);
 		Scanner scanner = new Scanner(System.in);
+		System.out.println("请输入上述验证码:");
 		String input = scanner.nextLine();
 
-		code = code.toLowerCase();
-		input = input.toLowerCase();
-//		if(input.equalsIgnoreCase(code)){//直接忽略大小写
-		if(input.equals(code)){
-			System.out.println("通过");
+//		code = code.toLowerCase();
+//		input = input.toLowerCase();
+//		if(input.equals(code)){
+		if(code.equalsIgnoreCase(input)){
+			System.out.println("通过!");
 		}else{
-			System.out.println("失败");
+			System.out.println("失败!");
 		}
+
 	}
 }
 

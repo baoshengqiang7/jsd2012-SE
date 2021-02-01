@@ -16,7 +16,7 @@ public class IntegerDemo02 {
 
         //字符串类型转换为基本类型
         String line = "123";
-//        String line = "123";//这个字符串就不能转换为int
+//        String line = "123 ";//这个字符串就不能转换为int
         int i = Integer.parseInt(line);
         System.out.println(i);
         double d = Double.parseDouble(line);
