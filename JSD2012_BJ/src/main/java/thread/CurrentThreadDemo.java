@@ -1,27 +1,25 @@
 package thread;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import org.w3c.dom.ls.LSOutput;
-
 /**
  * java中所有的代码都是靠线程运行的，main方法也不例外。运行main方法的线程是系统创建的
- * 并且起名为main，我们自己定义的线程如果不能指定名字，默认为Thread-X，X是一个数字，从0开始。
+ * 并且起名为main.我们自己定义的线程如果不指定名字，默认叫Thread-X.X是一个数字，从0开始。
  *
  * static Thread currentThread()
- * 线程提供了一个静态方法currentThread,可以获取运行这个方法的线程；
+ * 线程提供了一个静态方法currentThread,可以获取运行这个方法的线程。
  */
 public class CurrentThreadDemo {
     public static void main(String[] args) {
+        //获取运行main方法的线程
         Thread main = Thread.currentThread();
-        System.out.println("运行main方法的线程是："+main);
-        //让线程调用dosome方法，进去该方法中执行代码
+        System.out.println("运行main方法的线程是:"+main);
+        //让主线程调用dosome方法，进去该方法执行其中代码
         dosome();
-        //让主线程在创建一条线程，并将其启动，与主线程并发运行。
+        //让主线程再创建一条线程，并将其启动，与主线程并发运行
         Thread t = new Thread(){
-            //获取的就是自定义线程
-            public void run() {
+            public void run(){
+                //获取的就是自定义线程
                 Thread t = Thread.currentThread();
-                System.out.println("自定义线程："+t);
+                System.out.println("自定义线程:"+t);
                 dosome();
                 for(int i=0;i<1000;i++){
                     System.out.println(t+"循环"+i+"次");
@@ -30,14 +28,18 @@ public class CurrentThreadDemo {
             }
         };
         t.start();//t线程一旦start后，该线程中的run方法就和main方法下面的代码并发运行了
-        for(int i = 0;i<1000;i++){
+        for(int i=0;i<1000;i++){
             System.out.println(main+"循环"+i+"次");
         }
-        System.out.println("main方法执行完毕，主线程结束。");
+        System.out.println("main方法执行完毕，主线程结束.");
     }
+
     public static void dosome(){
-        //获取dosome方法的线程
-        Thread dosome = Thread.currentThread();
-        System.out.println("运行dosome方法的线程是："+dosome);
+        //获取运行dosome方法的线程
+        Thread t = Thread.currentThread();
+        System.out.println("运行dosome方法的线程是:"+t);
     }
 }
+
+
+

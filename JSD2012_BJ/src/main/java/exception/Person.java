@@ -13,19 +13,17 @@ public class Person {
     /**
      * 当一个方法使用throws声明异常抛出时，调用该方法的代码就必须
      * 处理这个异常。
-     * @param age
-     * @throws Exception
      */
     public void setAge(int age) throws IllegalAgeException {
-        if(age<0||age>100){
-            //超过合理范围则抛出一个异常
-//            throw new RuntimeException("年龄输入不合法！");
+        if(age<0||age>=100){
+            //超过合理范围则对外抛出一个异常
+//            throw new RuntimeException("年龄不合法!");
             /*
-                当一个方法中使用throw抛出一个异常是，就要求在
+                当一个方法中使用throw抛出一个异常时，就要求在
                 当前方法上使用throws声明该异常的抛出。只有
                 RuntimeException是个例外。
              */
-            throw new IllegalAgeException("年龄输入不合法！");
+            throw new IllegalAgeException("年龄不合法!");
         }
         this.age = age;
     }

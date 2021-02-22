@@ -1,9 +1,12 @@
 package exception;
 
 /**
- * 自定义异常，通常用来说明满足语法但是不满足实际业务问题的异常
+ * 年龄不合法异常，当指定的年龄超过人类范畴时会抛出该异常。
+ *
+ *
+ * 自定义异常，通常用来说明满足语法但是不满足实际业务问题的异常。
  * 自定异常的类名要做到见名知义。并且要继承自Exception(直接，间接均可)
- * 然后将Exception中所有的构造方法提供出来既可。不需要书写业务逻辑方法。
+ * 然后将Exception中所有的构造方法提供出来即可。不需要书写业务逻辑方法。
  */
 public class IllegalAgeException extends Exception{
     public IllegalAgeException() {
