@@ -1,5 +1,6 @@
 package xml;
 
+import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -42,14 +43,45 @@ public class ParseXmlDemo {
              */
             Element root = doc.getRootElement();
             String name = root.getName();
-            System.out.println("跟标签名字:"+name);
+            System.out.println("根标签名字:"+name);
 
             //解析所有的员工信息
             //获取所有<emp>标签
             List<Element> list = root.elements("emp");
             System.out.println("共有"+list.size()+"个<emp>标签");
             //遍历集合,获取每一个<emp>标签,并通过它获取到该员工的相关信息
+            for(Element empEle : list){
+                //获取员工名字
+                //1获取<name>标签
+                Element nameEle = empEle.element("name");
+                //2获取<name>标签中间的文本
+                String ename = nameEle.getText();
 
+                //获取员工年龄
+                Element ageEle = empEle.element("age");
+                //转换为int
+//              int age = Integer.valueOf(ageEle.getText()).intValue();
+                int age = Integer.parseInt(ageEle.getText());
+
+                //获取员工性别
+//                Element genderEle = empEle.element("gender");
+//                String egender = genderEle.getText();
+                String gender = empEle.elementText("gender");
+
+                //获取员工工资
+//                Element salaryEle = empEle.element("salary");
+                int salary= Integer.parseInt(empEle.elementText("salary"));
+
+                //获取<emp>标签属性的值:id
+//                Attribute attr = empEle.attribute("id");
+//                int id = Integer.parseInt(attr.getValue());
+
+//                int id = Integer.parseInt(empEle.attribute("id").getValue());
+
+                int id = Integer.parseInt(empEle.attributeValue("id"));
+
+                System.out.println(id+"."+ename+","+age+","+gender+","+salary);
+            }
 
 
 
